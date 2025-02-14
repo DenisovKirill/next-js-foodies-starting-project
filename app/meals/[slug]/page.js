@@ -15,6 +15,8 @@ export default function MealDetailsPage({ params }) {
   } = styles;
   const meal = getMeal(params.slug);
 
+  console.log('meal: ', meal);
+
   if (!meal) {
     notFound();
   }
@@ -35,11 +37,15 @@ export default function MealDetailsPage({ params }) {
         </div>
       </header>
       <main>
-        <div className={instructionsStyle}>
-          {instructions.split('\n').map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
-        </div>
+        {/*<div className={instructionsStyle}>*/}
+        {/*  {instructions.split('\n').map((line, index) => (*/}
+        {/*    <p key={index}>{line}</p>*/}
+        {/*  ))}*/}
+        {/*</div>*/}
+        <p
+          className={instructionsStyle}
+          dangerouslySetInnerHTML={{ __html: instructions.replace(/\n/g, '<br />') }}
+        ></p>
       </main>
     </>
   );

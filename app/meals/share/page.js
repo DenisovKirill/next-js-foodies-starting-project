@@ -1,23 +1,17 @@
-import styles from './page.module.scss';
+'use client';
+
+import { useFormState } from 'react-dom';
+
 import ImagePicker from '@/components/imagePicker/ImagePicker';
+import { shareMeal } from '@/lib/serverActions';
+import MealsFormSubmit from '@/components/meals/mealsFormSubmit/MealsFormSubmit';
+
+import styles from './page.module.scss';
 
 export default function ShareMealPage() {
   const { header, highlight, main, form, row, actions } = styles;
 
-  const shareMeal = async (formData) => {
-    'use server';
-
-    const meal = {
-      title: formData.get('title'),
-      creator: formData.get('name'),
-      creator_email: formData.get('email'),
-      instructions: formData.get('instructions'),
-      image: formData.get('image'),
-      summary: formData.get('summary'),
-    };
-
-    console.log('meal: ', meal);
-  };
+  const [state, formAction] = useFormState(shareMeal, { message: '' });
 
   return (
     <>
@@ -28,7 +22,7 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={main}>
-        <form className={form} action={shareMeal}>
+        <form className={form} action={formAction}>
           <div className={row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -52,8 +46,9 @@ export default function ShareMealPage() {
             <textarea id="instructions" name="instructions" rows="10" required></textarea>
           </p>
           <ImagePicker name={'image'} label={' Your image'} />
+          {state.message && <p>{state.message}</p>}
           <p className={actions}>
-            <button type="submit">Share Meal</button>
+            <MealsFormSubmit />
           </p>
         </form>
       </main>
