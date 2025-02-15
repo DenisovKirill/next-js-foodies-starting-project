@@ -4,6 +4,19 @@ import { notFound } from 'next/navigation';
 import { getMeal } from '@/lib/api/meals';
 import styles from './page.module.scss';
 
+export const generateMetadata = ({ params }) => {
+  const meal = getMeal(params.slug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+};
+
 export default function MealDetailsPage({ params }) {
   const {
     header,
