@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { IMAGES_API_BASE_URL } from '@/config/api';
 import styles from './mealItem.module.scss';
 
 export default function MealItem({ title, slug, image, summary, creator }) {
@@ -10,7 +10,7 @@ export default function MealItem({ title, slug, image, summary, creator }) {
     <article className={meal}>
       <header>
         <div className={imageHolder}>
-          <Image src={image} alt={title} fill />
+          <Image src={`${IMAGES_API_BASE_URL}${image}`} alt={title} fill />
         </div>
         <div className={headerText}>
           <h2>{title}</h2>

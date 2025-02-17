@@ -1,7 +1,15 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  experimental: {
-    turbo: {},
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'kirill-denisov-frontend-images.s3.eu-north-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

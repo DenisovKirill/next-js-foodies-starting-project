@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-
 import { getMeal } from '@/lib/api/meals';
+import { IMAGES_API_BASE_URL } from '@/config/api';
+
 import styles from './page.module.scss';
 
 export const generateMetadata = ({ params }) => {
@@ -28,8 +29,6 @@ export default function MealDetailsPage({ params }) {
   } = styles;
   const meal = getMeal(params.slug);
 
-  console.log('meal: ', meal);
-
   if (!meal) {
     notFound();
   }
@@ -39,7 +38,7 @@ export default function MealDetailsPage({ params }) {
     <>
       <header className={header}>
         <div className={imageStyle}>
-          <Image src={image} alt={title} fill />
+          <Image src={`${IMAGES_API_BASE_URL}${image}`} alt={title} fill />
         </div>
         <div className={headerText}>
           <h1>{title}</h1>

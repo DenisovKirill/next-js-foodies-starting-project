@@ -1,8 +1,6 @@
 'use client';
 
 export default function Error({ error }) {
-  console.log('error: ', error);
-
   return (
     <main className={'error'}>
       <h1>Error Page</h1>
