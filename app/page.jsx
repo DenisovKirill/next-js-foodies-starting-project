@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import styles from './page.module.scss';
-import ImageSlideshow from '@/components/images/ImagesSlideshow';
+import ImageSlideshow from '@/components/imagesSlideShow/ImagesSlideshow';
 
 export default function Home() {
   const { header, slideshow, hero, cta, section } = styles;
